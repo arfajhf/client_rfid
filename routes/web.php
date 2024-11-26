@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Invalid\InvalideController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware(['auth:admin'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::view('/', 'dashboard')->name('dashboard');
+    Route::controller(InvalideController::class)->group(function(){
+        Route::get('/invalid', 'index');
+    });
     Route::view('/super', 'super_admin.index')->name('post')->middleware('can:role,"superadmin"');
     Route::view('/admin', 'admin.index')->name('admin')->middleware('can:role,"admin"');
 });

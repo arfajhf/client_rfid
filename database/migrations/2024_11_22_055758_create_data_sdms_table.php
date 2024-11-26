@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('data_sdms', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->string('uid')->unique();
             $table->string('nama');
-            $table->string('instansi');
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
+            $table->string('foto');
+            $table->bigInteger('no_identitas')->unique();
+            $table->string('tempat');
             $table->date('tanggal_lahir');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->text('alamat');
+            $table->string('phone')->unique();
+            $table->string('kelas_posisi');
+            $table->string('instansi');
             $table->timestamps();
         });
     }
