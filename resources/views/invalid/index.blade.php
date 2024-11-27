@@ -30,7 +30,7 @@
                                 <td>{{ $row->uid }}</td>
                                 <td>{{ $row->created_at->format('d F Y') }}</td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-success">Create</a>
+                                    <a href="/invalid/create/{{$row->id}}" class="btn btn-success">Create</a>
                                     <a href="" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>

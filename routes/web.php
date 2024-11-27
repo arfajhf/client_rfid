@@ -31,9 +31,11 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::view('/', 'dashboard')->name('dashboard');
     Route::controller(InvalideController::class)->group(function(){
-        Route::get('/invalid', 'index');
+        Route::get('/invalid', 'index')->name('invalid');
+        Route::get('/invalid/create/{id}', 'create')->name('invalid.create');
+        Route::post('/invalid/create', 'store');
     });
-    Route::view('/super', 'super_admin.index')->name('post')->middleware('can:role,"superadmin"');
-    Route::view('/admin', 'admin.index')->name('admin')->middleware('can:role,"admin"');
+    // Route::view('/super', 'super_admin.index')->name('post')->middleware('can:role,"superadmin"');
+    // Route::view('/admin', 'admin.index')->name('admin')->middleware('can:role,"admin"');
 });
 // });
