@@ -9,10 +9,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <h5 class="card-title">Data Invalid</h5>
+            <h5 class="card-title">Data SDM</h5>
 
             <div class="search-bar header align-items-center d-flex">
-                <form class="search-form d-flex align-items-center" method="GET" action="/invalid">
+                <form class="search-form d-flex align-items-center" method="GET" action="/sdm">
                     <input type="text" name="query" placeholder="Search" value="{{ $query ?? '' }}">
                     <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
@@ -25,7 +25,10 @@
                         <tr>
                             <th>#</th>
                             <th>UID</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Nama</th>
+                            <th>Nomor Identitas</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Instansi</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -34,11 +37,15 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td> <!-- Loop helper untuk penomoran -->
                                 <td>{{ $row->uid }}</td>
-                                <td>{{ $row->created_at->format('d F Y') }}</td>
+                                <td>{{ $row->nama }}</td>
+                                <td>{{ $row->no_identitas }}</td>
+                                <td>{{ $row->jenis_kelamin }}</td>
+                                <td>{{ $row->instansi }}</td>
                                 <td class="text-center">
-                                    <a href="/invalid/create/{{ $row->id }}" class="btn btn-success">Create</a>
+                                    <a href="" class="btn btn-info">View</a>
+                                    <a href="/sdm/update/{{$row->id}}" class="btn btn-success">Update</a>
                                     {{-- <a href="" class="btn btn-danger">Delete</a> --}}
-                                    <form action="/invalid/delete/{{ $row->id }}" method="get"
+                                    <form action="/sdm/delete/{{ $row->id }}" method="get"
                                         class="form-basic d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-danger"

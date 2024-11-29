@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Invalid\InvalideController;
+use App\Http\Controllers\Sdm\SdmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,12 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/invalid', 'index')->name('invalid');
         Route::get('/invalid/create/{id}', 'create')->name('invalid.create');
         Route::post('/invalid/create', 'store');
+        Route::get('/invalid/delete/{id}', 'delete');
+    });
+    Route::controller(SdmController::class)->group(function(){
+        Route::get('/sdm', 'index')->name('sdm');
+        Route::get('/sdm/delete/{id}', 'delete');
+        Route::get('/sdm/update/{id}', 'edit');
     });
     // Route::view('/super', 'super_admin.index')->name('post')->middleware('can:role,"superadmin"');
     // Route::view('/admin', 'admin.index')->name('admin')->middleware('can:role,"admin"');

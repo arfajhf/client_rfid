@@ -53,39 +53,18 @@ class InvalideController extends Controller
             'in' => ':attribute harus diisi dengan "laki-laki" atau "perempuan".'
         ]);
 
-        // $data = DataSdm::create([
-        //     ...$request->all(),
-        //     'foto' => $request->file('foto')->move('foto', $request->file('foto')->getClientOriginalName())
-        // ]);
-        // return dd($data);
-
-        // $data = DataSdm::create([
-        //     'uid',
-        //     'nama',
-        //     'foto',
-        //     'no_identitas',
-        //     'tempat',
-        //     'tanggal_lahir',
-        //     'jenis_kelamin',
-        //     'alamat',
-        //     'phone',
-        //     'kelas_posisi',
-        //     'instansi'
-        // ]);
-        // $request->tanggal_lahir = date(format(dd-mm-yy));
-
         $data = DataSdm::create($request->all());
 
-        // return dd($data);
-
         if($request->hasFile('foto')){
-            $request->file('foto')->move('foto', $request->file('foto')->getClientOriginalName());
-            $data->foto = $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move('foto', date('mdYHis') . uniqid() .  $request->file('foto')->getClientOriginalName());
+            $data->foto = date('mdYHis') . uniqid() .  $request->file('foto')->getClientOriginalName();
             $data->save();
         }
+        return redirect()->route('sdm')->with('success', 'Data Berhasil ditambahkan');
+    }
 
-
-
-        return redirect()->route('invalid')->with('success', 'Data Berhasil ditambahkan');
+    public function delete($id){
+        DataInvalid::find($id)->delete();
+        return redirect()->route('invalid')->with('success', 'Data berhasil di hapus');
     }
 }

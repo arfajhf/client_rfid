@@ -14,7 +14,7 @@ class DataInvalidSeeder extends Seeder
     public function run(): void
     {
         DataInvalid::create([
-            'uid' => '2345778',
+            'uid' => '2345770',
         ]);
     }
 }
