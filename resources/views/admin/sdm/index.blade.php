@@ -13,7 +13,7 @@
 
             <div class="search-bar header align-items-center d-flex">
                 <form class="search-form d-flex align-items-center" method="GET" action="/sdm">
-                    <input type="text" name="query" placeholder="Search" value="{{ $query ?? '' }}">
+                    <input type="text" name="query" placeholder="Masukan UID/Nama/No Identitas/Nama Instansi" value="{{ $query ?? '' }}">
                     <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div><!-- End Search Bar -->
@@ -42,7 +42,7 @@
                                 <td>{{ $row->jenis_kelamin }}</td>
                                 <td>{{ $row->instansi }}</td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-info">View</a>
+                                    <a href="/sdm/view/{{$row->id}}" class="btn btn-info">View</a>
                                     <a href="/sdm/update/{{$row->id}}" class="btn btn-success">Update</a>
                                     {{-- <a href="" class="btn btn-danger">Delete</a> --}}
                                     <form action="/sdm/delete/{{ $row->id }}" method="get"
@@ -55,7 +55,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-center">Invalid Data Not Found</td>
+                                <td colspan="7" class="text-center">Invalid Data Not Found</td>
                             </tr>
                         @endforelse
                     </tbody>

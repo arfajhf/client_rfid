@@ -41,6 +41,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/sdm', 'index')->name('sdm');
         Route::get('/sdm/delete/{id}', 'delete');
         Route::get('/sdm/update/{id}', 'edit');
+        Route::post('/sdm/update/{id}', 'update');
+        Route::get('/sdm/view/{id}', 'view');
     });
     // Route::view('/super', 'super_admin.index')->name('post')->middleware('can:role,"superadmin"');
     // Route::view('/admin', 'admin.index')->name('admin')->middleware('can:role,"admin"');

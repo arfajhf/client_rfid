@@ -56,8 +56,10 @@ class InvalideController extends Controller
         $data = DataSdm::create($request->all());
 
         if($request->hasFile('foto')){
-            $request->file('foto')->move('foto', date('mdYHis') . uniqid() .  $request->file('foto')->getClientOriginalName());
-            $data->foto = date('mdYHis') . uniqid() .  $request->file('foto')->getClientOriginalName();
+            $uniq = uniqid();
+            $filename = date('mdY') . $uniq .  $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move('foto', $filename);
+            $data->foto = $filename;
             $data->save();
         }
         return redirect()->route('sdm')->with('success', 'Data Berhasil ditambahkan');

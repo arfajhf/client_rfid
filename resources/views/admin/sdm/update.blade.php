@@ -5,7 +5,7 @@
             <h5 class="card-title">Create Data SDM</h5>
 
             <!-- General Form Elements -->
-            <form action="/sdm/update" method="POST" enctype="multipart/form-data">
+            <form action="/sdm/update/{{$data->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <label for="uid" class="col-sm-2 col-form-label">UID</label>
@@ -129,7 +129,7 @@
 
                 <div class="row mb-3">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-info">Create</button>
+                        <button type="submit" class="btn btn-info">Update</button>
                     </div>
                 </div>
             </form><!-- End General Form Elements -->
