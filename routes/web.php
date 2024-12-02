@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Invalid\InvalideController;
+use App\Http\Controllers\presensi\PresensiController;
 use App\Http\Controllers\Sdm\SdmController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,10 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::post('/sdm/update/{id}', 'update');
         Route::get('/sdm/view/{id}', 'view');
     });
+    Route::controller(PresensiController::class)->group(function(){
+        Route::get('/presensi', 'index')->name('data.presensi');
+    });
+
     // Route::view('/super', 'super_admin.index')->name('post')->middleware('can:role,"superadmin"');
     // Route::view('/admin', 'admin.index')->name('admin')->middleware('can:role,"admin"');
 });

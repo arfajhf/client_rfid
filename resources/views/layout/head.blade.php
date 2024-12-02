@@ -306,7 +306,7 @@
             </li><!-- End F.A.Q Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
+                <a class="nav-link collapsed" href="{{route('data.presensi')}}">
                     <i class="bi bi-card-list"></i>
                     <span>Data Presensi</span>
                 </a>

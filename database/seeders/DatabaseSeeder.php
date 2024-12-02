@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // DataPenyewaSeeder::class,
             // AdminSeeder::class
-            DataInvalidSeeder::class
+            // DataInvalidSeeder::class
+            DataPresensiSeeder::class
         ]);
     }
 }
