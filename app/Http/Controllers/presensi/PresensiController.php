@@ -16,6 +16,8 @@ class PresensiController extends Controller
             ->orWhere('nama', 'like', '%' . $query . '%');
         })->get();
 
+        // $d = bcrypt(hash('$P$BOnq3gmqwY3Tv5H2DVAfAnR2N9vMwi0'));
+
         return view('admin.presensi.index', compact('data'));
     }
 }

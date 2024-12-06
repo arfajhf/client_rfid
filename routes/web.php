@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RfidController;
+use App\Http\Controllers\Sdm\SdmController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Invalid\InvalideController;
 use App\Http\Controllers\presensi\PresensiController;
-use App\Http\Controllers\Sdm\SdmController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 //     'prefix'=>config('admin.prefix'),
 //     'namespace'=>'App\\Http\\Controllers',
 // ],function () {
+
+
 
 Route::get('login', [AuthController::class, 'formLogin'] )->name('admin.login');
 Route::post('login', [AuthController::class, 'login']);
