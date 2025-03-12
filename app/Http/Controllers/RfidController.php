@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataInvalid;
 use Carbon\Carbon;
 use App\Models\DataSdm;
 use App\Models\DataPresensi;
@@ -44,9 +45,14 @@ class RfidController extends Controller
                 ]);
             }
         } else {
+            $invalide = DataInvalid::create([
+                'uid' => $uid
+            ]);
+
             return response()->json([
                 'status' => 'invalide',
-                'message' => 'Kartu Belum terdaftar di aplikasi'
+                'message' => 'Kartu Belum terdaftar di aplikasi',
+                'data' => $invalide
             ]);
         }
 
