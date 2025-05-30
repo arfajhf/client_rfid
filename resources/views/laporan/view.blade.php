@@ -9,15 +9,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <h5 class="card-title">Data Presensi</h5>
-
-            <div class="search-bar header align-items-center d-flex">
-                <form class="search-form d-flex align-items-center" method="GET" action="/presensi">
-                    <input type="text" name="query" placeholder="Masukan UID/Nama/No Identitas/Nama Instansi" value="{{ $query ?? '' }}">
-                    <button type="submit"><i class="bi bi-search"></i></button>
-                </form>
-            </div><!-- End Search Bar -->
-            {{-- </div> --}}
+            <div class="row align-items-center mb-3">
+                <div class="col-auto">
+                    <h5 class="card-title">
+                        Data Presensi Dari
+                        {{ \Carbon\Carbon::parse($tgl_awal)->locale('id')->translatedFormat('l, d F Y') }}
+                        Sampai {{ \Carbon\Carbon::parse($tgl_akhir)->locale('id')->translatedFormat('l, d F Y') }}
+                    </h5>
+                </div>
+                <div class="col-auto ms-auto">
+                    <form action="{{route('download.laporan')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="tgl_awal" value="{{$tgl_awal}}">
+                        <input type="hidden" name="tgl_akhir" value="{{$tgl_akhir}}">
+                        <button class="btn btn-outline-success rounded-pill shadow-sm">Download</button>
+                    </form>
+                    {{-- <a href="#" class="btn btn-outline-success rounded-pill shadow-sm">Download</a> --}}
+                </div>
+            </div>
             <!-- Table with stripped rows -->
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -43,17 +52,6 @@
                                 <td>{{ $row->jam_keluar }}</td>
                                 <td>{{ $row->setatus }}</td>
                                 <td>{{ $row->keterangan }}</td>
-                                {{-- <td class="text-center">
-                                    <a href="/sdm/view/{{$row->id}}" class="btn btn-info">View</a>
-                                    <a href="/sdm/update/{{$row->id}}" class="btn btn-success">Update</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
-                                    <form action="/sdm/delete/{{ $row->id }}" method="get"
-                                        class="form-basic d-inline">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Apa anda yakin ingin menghapus data ini?')">Delete</button>
-                                    </form>
-                                </td> --}}
                             </tr>
                         @empty
                             <tr>

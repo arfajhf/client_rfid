@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            DataPenyewaSeeder::class,
-            AdminSeeder::class,
+            // DataPenyewaSeeder::class,
+            // AdminSeeder::class,
             DataInvalidSeeder::class,
             // DataPresensiSeeder::class,
         ]);

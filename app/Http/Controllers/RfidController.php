@@ -41,7 +41,8 @@ class RfidController extends Controller
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Berhasil melakukan absen',
-                    'data' => $data
+                    'data' => $data,
+                    'sdm' => $sdm
                 ]);
             }
         } else {

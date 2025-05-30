@@ -20,4 +20,8 @@ class PresensiController extends Controller
 
         return view('admin.presensi.index', compact('data'));
     }
+
+    // public function getNameInArduiono(){
+
+    // }
 }
