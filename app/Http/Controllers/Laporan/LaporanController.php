@@ -33,7 +33,13 @@ class LaporanController extends Controller
             ->where('setatus', 'out')
             ->get();
 
-        return view('laporan.view', compact('data', 'tgl_awal', 'tgl_akhir'));
+        // return view('laporan.view', compact('data', 'tgl_awal', 'tgl_akhir'));
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+            'tgl_awal' => $tgl_awal,
+            'tgl_akhir' => $tgl_akhir
+        ]);
     }
 
     public function CsvDownload(Request $request)

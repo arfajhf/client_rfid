@@ -16,11 +16,20 @@ class DashboardController extends Controller
         $presensi = DataPresensi::count();
         $sekolah = DataPenyewa::count();
 
-        return view('dashboard', compact(
-            'sdm',
-            'invalide',
-            'presensi',
-            'sekolah'
-        ));
+        // return view('dashboard', compact(
+        //     'sdm',
+        //     'invalide',
+        //     'presensi',
+        //     'sekolah'
+        // ));
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'sdm' => $sdm,
+                'invalide' => $invalide,
+                'presensi' => $presensi,
+                'sekolah' => $sekolah
+            ]
+        ]);
     }
 }

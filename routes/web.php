@@ -57,7 +57,7 @@ Route::controller(LivePresensiController::class)->group(function () {
 });
 
 Route::controller(LaporanController::class)->group(function(){
-    Route::get('/Laporan', 'index')->name('data.laporan');
+    Route::get('/laporan', 'index')->name('data.laporan');
     Route::post('/laporan/view', 'views')->name('view.laporan');
     Route::post('/laporan/download', 'CsvDownload')->name('download.laporan');
 });

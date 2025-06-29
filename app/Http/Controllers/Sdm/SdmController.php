@@ -23,14 +23,24 @@ class SdmController extends Controller
             });
         })->get();
 
-        return view('admin.sdm.index', compact('data', 'query'));
+        // return view('admin.sdm.index', compact('data', 'query'));
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+            'query' => $query
+        ]);
     }
 
     public function edit($id)
     {
         $data = DataSdm::find($id);
 
-        return view('admin.sdm.update', compact('data'));
+        // return view('admin.sdm.update', compact('data'));
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+            'foto_url' => url('foto/' . $data->foto)
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -81,17 +91,30 @@ class SdmController extends Controller
         // return dd($data);
 
         // Redirect dengan pesan sukses
-        return redirect()->route('sdm')->with('success', 'Data Berhasil diperbarui');
+        // return redirect()->route('sdm')->with('success', 'Data Berhasil diperbarui');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data berhasil diperbarui',
+            'data' => $data
+        ]);
     }
 
     public function view($id){
         $data = DataSdm::find($id);
-        return view('admin.sdm.view', compact('data'));
+        // return view('admin.sdm.view', compact('data'));
+        return response([
+            'status' => 'success',
+            'data' => $data
+        ]);
     }
 
     public function delete($id)
     {
         DataSdm::find($id)->delete();
-        return redirect()->route('sdm')->with('success', 'Data berhasil di hapus');
+        // return redirect()->route('sdm')->with('success', 'Data berhasil di hapus');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data berhasil dihapus'
+        ]);
     }
 }

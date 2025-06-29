@@ -19,14 +19,24 @@ class InvalideController extends Controller
                 $q->where('uid', 'like', '%' . $query . '%');
             })
             ->get();
-        return view('invalid.index', compact('data', 'query'));
+        // return view('invalid.index', compact('data', 'query'));
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+            'query' => $query
+        ]);
     }
 
     public function create($id)
     {
         $invalid = DataInvalid::find($id);
         $penyewa = DataPenyewa::all();
-        return view('invalid.create', compact('invalid', 'penyewa'));
+        // return view('invalid.create', compact('invalid', 'penyewa'));
+        return response()->json([
+            'status' => 'success',
+            'invalid' => $invalid,
+            'penyewa' => $penyewa
+        ]);
     }
 
     public function store(Request $request)
@@ -62,11 +72,20 @@ class InvalideController extends Controller
             $data->foto = $filename;
             $data->save();
         }
-        return redirect()->route('sdm')->with('success', 'Data Berhasil ditambahkan');
+        // return redirect()->route('sdm')->with('success', 'Data Berhasil ditambahkan');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data berhasil ditambahkan',
+            'data' => $data
+        ]);
     }
 
     public function delete($id){
         DataInvalid::find($id)->delete();
-        return redirect()->route('invalid')->with('success', 'Data berhasil di hapus');
+        // return redirect()->route('invalid')->with('success', 'Data berhasil di hapus');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data berhasil dihapus'
+        ]);
     }
 }
